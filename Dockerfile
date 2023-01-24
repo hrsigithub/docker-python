@@ -16,6 +16,14 @@ RUN pip install pandas_datareader
 RUN pip install mplfinance
 RUN pip install japanize-matplotlib
 
+RUN pip install python-dotenv
+RUN pip install jpholiday
+RUN pip install mojimoji
+RUN pip install firebase-admin
+
+RUN pip install pyOpenSSL --upgrade
+
+
 RUN wget --quiet http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz -O ta-lib-0.4.0-src.tar.gz && \
     tar xvf ta-lib-0.4.0-src.tar.gz && \
     cd ta-lib/ && \
@@ -27,5 +35,9 @@ RUN wget --quiet http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.
     rm -R ta-lib ta-lib-0.4.0-src.tar.gz
 
 RUN mkdir /workspace
+
+# git インスコ
+RUN apt-get update && apt-get install -y git
+
 
 CMD ["jupyter-lab", "--ip=0.0.0.0","--port=8888" ,"--no-browser", "--allow-root", "--LabApp.token=''"]
